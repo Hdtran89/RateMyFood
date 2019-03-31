@@ -1,35 +1,48 @@
 package com.example.ratemyfood.di.module
 
 import android.app.Application
-import com.example.ratemyfood.data.rest.YelpService
+import android.arch.lifecycle.ViewModelProvider
+import android.arch.persistence.room.Room
+import com.example.ratemyfood.dao.BusinessDao
+import com.example.ratemyfood.dao.Database
+import com.example.ratemyfood.dao.ReviewDao
+import com.example.ratemyfood.util.Constants
+import com.example.ratemyfood.util.Utils
+import com.example.ratemyfood.util.ViewModelFactory
 import dagger.Module
-import retrofit2.Retrofit
 import dagger.Provides
 import javax.inject.Singleton
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 
-@Singleton
-@Module(includes = [ViewModelModule::class])
+@Module
 class AppModule(val app:Application) {
-    private val BASE_URL = "https://api.yelp.com/v3/"
-
-    @Singleton
-    @Provides
-    fun provideRetrofit(): Retrofit {
-        return Retrofit.Builder().baseUrl(BASE_URL)
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-    }
-
-    @Singleton
-    @Provides
-    fun provideRetrofitService(retrofit: Retrofit): YelpService {
-        return retrofit.create<YelpService>(YelpService::class.java)
-    }
 
     @Singleton
     @Provides
     fun provideApplication(): Application = app
+
+    @Provides
+    @Singleton
+    fun provideBusinessCardDatabase(app: Application): Database = Room.databaseBuilder(app,
+        Database::class.java, Constants.DATABASE_NAME)
+        .fallbackToDestructiveMigration()
+        .build()
+
+    @Provides
+    @Singleton
+    fun provideBusinessDao(
+        database: Database): BusinessDao = database.businessDao()
+
+    @Provides
+    @Singleton
+    fun provideReviewDao(
+        database: Database): ReviewDao = database.reviewDao()
+
+    @Provides
+    @Singleton
+    fun provideViewModelFactory(
+        factory: ViewModelFactory): ViewModelProvider.Factory = factory
+
+    @Provides
+    @Singleton
+    fun provideUtils(): Utils = Utils(app)
 }

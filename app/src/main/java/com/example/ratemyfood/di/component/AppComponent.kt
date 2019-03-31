@@ -1,15 +1,22 @@
 package com.example.ratemyfood.di.component
 
-import android.app.Application
+import com.example.ratemyfood.RateMyFoodApplication
 import com.example.ratemyfood.di.module.ActivityBuilder
 import com.example.ratemyfood.di.module.AppModule
 import com.example.ratemyfood.di.module.ContextModule
+import com.example.ratemyfood.di.module.NetworkModule
 import dagger.Component
 import javax.inject.Singleton
 import dagger.android.support.AndroidSupportInjectionModule
 
 @Singleton
-@Component(modules = [ContextModule::class, AppModule::class, AndroidSupportInjectionModule::class, ActivityBuilder::class])
+@Component(modules =
+    [   ContextModule::class,
+        AppModule::class,
+        AndroidSupportInjectionModule::class,
+        ActivityBuilder::class,
+        NetworkModule::class
+    ])
 interface AppComponent {
-    fun inject(app: Application)
+    fun inject(app: RateMyFoodApplication)
 }

@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.Application
 import com.example.ratemyfood.di.component.DaggerAppComponent
 import com.example.ratemyfood.di.module.AppModule
+import com.example.ratemyfood.di.module.NetworkModule
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
@@ -15,7 +16,12 @@ class RateMyFoodApplication : Application(), HasActivityInjector{
 
     override fun onCreate() {
         super.onCreate()
-        DaggerAppComponent.builder().appModule(AppModule(this)).build().inject(this)
+        val BASE_URL = "https://api.yelp.com/v3/"
+        DaggerAppComponent.builder()
+            .appModule(AppModule(this))
+            .networkModule(NetworkModule(BASE_URL))
+            .build()
+            .inject(this)
     }
 
     override fun activityInjector(): AndroidInjector<Activity> = activityInjector

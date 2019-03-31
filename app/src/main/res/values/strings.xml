@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">RateMyFood</string>
+    <string name="search_text_input">Enter type of restaurant or food.</string>
+    <string name="bussiness_error_message">Something went wrong</string>
 </resources>
