@@ -41,10 +41,6 @@ class SearchActivity : AppCompatActivity() {
         val progressBar = findViewById<ProgressBar>(R.id.progressBar)
         progressBar.visibility = View.VISIBLE
 
-        searchText.setOnClickListener {
-            searchText.text.clear()
-        }
-
         searchText.setOnEditorActionListener { v, actionId, event ->
             if(actionId == EditorInfo.IME_ACTION_DONE){
                 progressBar.visibility = View.VISIBLE

@@ -9,8 +9,8 @@ import io.reactivex.Single
 
 @Dao
 interface ReviewDao {
-    @Query("SELECT * FROM review WHERE business_id=:business_id ORDER BY id limit:limit offset :offset")
-    fun getReview(limit:Int, offset:Int, business_id: String): Single<List<Review>>
+    @Query("SELECT * FROM review")
+    fun getReview(): Single<List<Review>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertReview(review: Review)

@@ -44,7 +44,9 @@ class SearchAdapter : RecyclerView.Adapter<SearchAdapter.SearchViewHolder>(){
                 .with(itemView.context)
                 .load(businessCard.business.image_url)
                 .into(imageBusiness)
-            //reviewBusiness.text = businessCard.review.text
+            businessCard.reviewList?.forEach {
+                reviewBusiness.text = it.text
+            }
         }
     }
 }

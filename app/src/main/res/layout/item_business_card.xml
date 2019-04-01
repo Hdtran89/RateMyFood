@@ -16,7 +16,8 @@
             android:layout_height="wrap_content"
             android:id="@+id/reviewsText"
             android:layout_margin="4dp"
-            android:maxLines="2"
+            android:maxLines="1"
+            android:ellipsize="end"
             android:layout_below="@id/businessImage"/>
     </RelativeLayout>
 </android.support.v7.widget.CardView>

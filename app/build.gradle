@@ -93,4 +93,7 @@ dependencies {
 
     //Okhttp
     implementation 'com.squareup.okhttp3:logging-interceptor:3.8.0'
+
+    //Mokito
+    testImplementation 'org.mockito:mockito-inline:2.8.47'
 }

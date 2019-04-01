@@ -14,7 +14,4 @@ data class Review(
     val id : String,
     @Json(name = "text")
     @ColumnInfo(name = "text")
-    val text : String,
-    @Json(name = "business_id")
-    @ColumnInfo(name = "business_id")
-    val business_id: String) : Serializable
+    val text : String) : Serializable
