@@ -59,6 +59,7 @@ class YelpRepository @Inject constructor(
                        val listReview = arrayListOf<Review>()
                        listReview.add(review)
                        list.add(BusinessCard(business, listReview))
+                       Log.e("Test API", list.size.toString())
                        Observable.just(list)
                    }
            }
@@ -79,6 +80,7 @@ class YelpRepository @Inject constructor(
                         val listReview = arrayListOf<Review>()
                         listReview.add(review)
                         list.add(BusinessCard(business, listReview))
+                        Log.e("Test LOCAL", list.size.toString())
                         Observable.just(list)
                     }
             }
