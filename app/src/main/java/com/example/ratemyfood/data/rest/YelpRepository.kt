@@ -1,6 +1,5 @@
 package com.example.ratemyfood.data.rest
 
-import android.util.Log
 import com.example.ratemyfood.dao.BusinessDao
 import com.example.ratemyfood.dao.ReviewDao
 import com.example.ratemyfood.data.model.*
@@ -59,7 +58,6 @@ class YelpRepository @Inject constructor(
                        val listReview = arrayListOf<Review>()
                        listReview.add(review)
                        list.add(BusinessCard(business, listReview))
-                       Log.e("Test API", list.size.toString())
                        Observable.just(list)
                    }
            }
@@ -80,7 +78,6 @@ class YelpRepository @Inject constructor(
                         val listReview = arrayListOf<Review>()
                         listReview.add(review)
                         list.add(BusinessCard(business, listReview))
-                        Log.e("Test LOCAL", list.size.toString())
                         Observable.just(list)
                     }
             }
